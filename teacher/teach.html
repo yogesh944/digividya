@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Attendance & Progress</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Main Theme Colors */
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+        }
+
+        .header {
+            background-color: #0044cc;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        /* Section Titles */
+        h2 {
+            color: #0044cc;
+            margin-bottom: 1rem;
+        }
+
+        /* Attendance and Progress Sections */
+        .attendance, .progress {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        /* Dropdowns and Buttons */
+        select, input[type="date"], button {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 0.5rem;
+        }
+
+        button {
+            background-color: #ffcc00;
+            border: none;
+            cursor: pointer;
+            color: #333;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #e6b800;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.8rem;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #0044cc;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Teacher Dashboard</h1>
+        <p>Manage Student Attendance and Track Progress</p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Attendance Section -->
+        <section class="attendance">
+            <h2>Mark Attendance</h2>
+            <label for="subjectSelect">Select Subject:</label>
+            <select id="subjectSelect" onchange="updateAttendanceTable()">
+                <option value="math">DMGT</option>
+                <option value="science">Open Elective</option>
+                <option value="history">D.S.A</option>
+            </select>
+
+            <label for="sectionSelect">Select Section:</label>
+            <select id="sectionSelect" onchange="updateAttendanceTable()">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="F">F</option>
+            </select>
+            
+            <label for="attendanceDate">Date:</label>
+            <input type="date" id="attendanceDate">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Roll Number</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                    </tr>
+                </thead>
+                <tbody id="attendanceTable">
+                    <!-- Student rows will be dynamically generated -->
+                </tbody>
+            </table>
+            <button onclick="submitAttendance()">Submit Attendance</button>
+        </section>
+
+        <!-- Progress Tracking Section -->
+        <section class="progress">
+            <h2>Student Progress</h2>
+            <label for="progressSubject">Select Subject:</label>
+            <select id="progressSubject" onchange="updateProgressTable()">
+                <option value="math">DMGT</option>
+                <option value="science">Open Elective</option>
+                <option value="history">D.S.A</option>
+            </select>
+
+            <label for="progressSection">Select Section:</label>
+            <select id="progressSection" onchange="updateProgressTable()">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="F">F</option>
+            </select>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Roll Number</th>
+                        <th>Progress (%)</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody id="progressTable">
+                    <!-- Progress rows will be dynamically generated -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        // Sample Data
+        const studentData = {
+            A: [{name: "Raj Singh", roll: "19", progress: 80, comment: "Good performance"}, {name: "Himanshu Nikhare", roll: "20", progress: 75, comment: "Consistent work"}],
+            B: [{name: "Pratik Yadav", roll: "45", progress: 70, comment: "Needs improvement"}, {name: "Pratik Yadav", roll: "46", progress: 60, comment: "Focus on assignments"}],
+            C: [{name: "Parineet Gupta", roll: "33", progress: 90, comment: "Excellent performance"}, {name: "Rajshree", roll: "34", progress: 85, comment: "Strong participation"}],
+            D: [{name: "Adesh Patil", roll: "22", progress: 65, comment: "More focus needed"}, {name: "Simran", roll: "23", progress: 72, comment: "Showing progress"}],
+            F: [{name: "Samnata Narde", roll: "43", progress: 50, comment: "Work on basics"}, {name: "Roshni Sharma", roll: "40", progress: 55, comment: "Needs improvement"}],
+        };
+
+        function updateAttendanceTable() {
+            const section = document.getElementById("sectionSelect").value;
+            const tbody = document.getElementById("attendanceTable");
+            tbody.innerHTML = "";
+
+            if (studentData[section]) {
+                studentData[section].forEach(student => {
+                    const row = `<tr>
+                        <td>${student.name}</td>
+                        <td>${student.roll}</td>
+                        <td class="center"><input type="radio" name="attendance_${student.roll}" value="present"></td>
+                        <td class="center"><input type="radio" name="attendance_${student.roll}" value="absent"></td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            }
+        }
+
+        function updateProgressTable() {
+            const section = document.getElementById("progressSection").value;
+            const tbody = document.getElementById("progressTable");
+            tbody.innerHTML = "";
+
+            if (studentData[section]) {
+                studentData[section].forEach(student => {
+                    const row = `<tr>
+                        <td>${student.name}</td>
+                        <td>${student.roll}</td>
+                        <td>${student.progress}%</td>
+                        <td>${student.comment}</td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            }
+        }
+
+        function submitAttendance() {
+            alert("Attendance submitted successfully!");
+        }
+
+        // Initial load
+        updateAttendanceTable();
+        updateProgressTable();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="techom.css">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        text-align: center;
+    }
+    .container {
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+    }
+    .btn {
+        padding: 10px 20px;
+        margin-top: 20px;
+        background-color: #00509e;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .btn:disabled {
+        background-color: #ccc;
+    }
+</style>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="/vidya-removebg-preview.png" alt="Campus Logo" class="logo-img">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="event.html">Events</a></li>
+                <li><a href="teach.html">Attendance & Progress</a></li>
+               
+                <li><a href="#teacherSelect">Atten-Teacher</a></li>
+            </ul>
+        </nav>
+        
+        <div class="user-profile">
+            <img src="" alt="Profile Photo" class="profile-photo">
+            <div class="user-data">
+                <img src="" alt="Profile Photo" class="profile-photo-small">
+                <div class="user-info">
+                    <h2><b>Name :</b>Prachi Jain</h2>
+                    <p><b>Mail :</b>prachijain93@gmail.com</p>
+                    
+                    <p><b>D.O.B :</b>00/00/0000</p>
+                    <p><b>Gender :</b>Female</p>
+                    <p><b>Contact No. :</b>794048404</p>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </div>
+
+
+    <div class="main-content">
+        <img src="/img1.jpg" alt="Students" class="main-img">
+        <div class="content">
+            <h1>DigiVidya</h1>
+            <p>Your one-stop destination for all things college-related!</p>
+            
+        </div>
+    </div>
+
+    <div class="faq-section"></div>
+        <h1>Frequently Asked Questions</h1>
+        <div class="faq-item">
+            <h2>How do I check my fees?</h2>
+            <p>Navigate to the Fees section and enter your details. It's as easy as pie!</p>
+        </div>
+        <div class="faq-item">
+            <h2>What if I miss a class?</h2>
+            <p>Don't panic! Attendance can be checked online, and you can always catch up. Just don’t make it a habit!</p>
+        </div>
+        <div class="faq-item">
+            <h2>When are exams scheduled?</h2>
+            <p>Check the Exams section for the latest updates. Spoiler: they're usually not fun!</p>
+        </div>
+        <div class="faq-item">
+            <h2>How to submit exam forms?</h2>
+            <p>Fill out the form online and hit submit. Easy peasy, lemon squeezy!</p>
+        </div>
+        <div class="faq-item">
+            <h2>Where to find performance reports?</h2>
+            <p>Your Annual Performance Report is just a click away in the Performance section!</p>
+        </div>
+    </div>
+
+  
+
+    <div class="container">
+        <h1>Mark Attendance</h1>
+        <label for="teacherSelect">Select Your Name:</label>
+        <select id="teacherSelect">
+            <option value="Ms. Prachi Jain">Ms. Prachi Jain</option>
+            <option value="Ms. Trupti Meshram">Ms. Trupti Meshram</option>
+            <option value="Mr. Raju Roy">Mr. Raju Roy</option>
+            <option value="Ms. Ruchi">Ms. Ruchi</option>
+            <option value="Mr. Imran Khan">Mr. Imran Khan</option>
+            <!-- Add more teachers as needed -->
+        </select>
+        <br><br>
+        <button class="btn" onclick="markAttendance('Present')">Mark Present</button>
+        <button class="btn" onclick="markAttendance('Absent')" style="background-color: #ff4d4d;">Mark Absent</button>
+    </div>
+    
+    <script>
+         // Initialize attendance in localStorage if not already present
+    if (!localStorage.getItem("attendance")) {
+        localStorage.setItem("attendance", JSON.stringify({}));
+    }
+
+    function markAttendance(status) {
+        const teacher = document.getElementById("teacherSelect").value;
+        const attendance = JSON.parse(localStorage.getItem("attendance")) || {};
+
+        attendance[teacher] = status; // Set the selected teacher's attendance as either "Present" or "Absent"
+        localStorage.setItem("attendance", JSON.stringify(attendance));
+
+        alert(`${teacher} marked as ${status}!`);
+    }
+    </script>
+
+
+
+       <div class="Join">
+        <h1>Join the Fun, Stay Informed!</h1>
+        <p>Don't miss out on important updates and events!</p>
+        
+    </div>
+    <div class="stats">
+        <div class="stat">
+            <h2>Rs 110650</h2>
+            <p>Total Fees</p>
+        </div>
+        <div class="stat">
+            <h2>95%</h2>
+            <p>Attendance Rate</p>
+        </div>
+        <div class="stat">
+            <h2>8.8</h2>
+            <p>CGPA Average</p>
+        </div>
+    </div>
+
+    <div class="video-container"></div>
+        <video autoplay muted loop>
+            <source src="/video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="social-circle">
+        <h2>Join Our Social Circle</h2>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-twitch"></i></a>
+        </div>
+    </div>
+    <div class="contact-form">
+        <h2>Get in Touch</h2>
+        <div class="form-container">
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <textarea placeholder="Message"></textarea>
+            <button>Send It!</button>
+        </div>
+    </div>
+</body>
+</html>

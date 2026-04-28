@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Events</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .container a{
+        text-decoration: none;
+    }
+
+   
+
+    h1 {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 2.5rem;
+      color: #333;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+    }
+
+    .event-card {
+      background-color: #2bccd1;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .event-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .event-card img {
+      width: 100%;
+      border-radius: 8px 8px 0 0;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .event-card h3 {
+      margin: 15px 0;
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    .event-card p {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .event-card .btn {
+      display: flexbox;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: rgb(226, 226, 50);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      align-items: center;
+      justify-content: center;
+      
+    }
+
+    .event-card .btn:hover {
+      background-color: #218838;
+    }
+
+    /* Footer Animations */
+    footer {
+      margin-top: 50px;
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      position: relative;
+    }
+
+    .moving-text {
+      font-size: 1.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+      position: absolute;
+      width: 100%;
+    }
+
+    .move-left-to-right {
+      left: -100%;
+      animation: leftToRight 10s linear infinite;
+    }
+
+    .move-right-to-left {
+      right: -100%;
+      animation: rightToLeft 10s linear infinite;
+    }
+
+    @keyframes leftToRight {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    @keyframes rightToLeft {
+      0% { right: -100%; }
+      100% { right: 100%; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="home2.html"><h1>College Events </h1></a>
+    
+    <div class="card-grid">
+      
+      <!-- Event 1 -->
+      <div class="event-card">
+        <img src="https://via.placeholder.com/350x200?text=Hackathon" alt="Coding Hackathon">
+        <h3>Coding Hackathon</h3>
+        <p>Join our 24-hour coding hackathon and challenge your programming skills to win amazing prizes. Open to all students!</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSezay4qHigYo0Aqwq2DYdH9gunyTd7qxhpIE97aYZLaYe1C_Q/viewform?usp=sf_link" class="btn" target="_blank">Register Here</a>
+      </div>
+      
+      <!-- Event 2 -->
+      <div class="event-card">
+        <img src="https://via.placeholder.com/350x200?text=AI+Talk" alt="Tech Talk AI">
+        <h3>Tech Talk: AI in 2024</h3>
+        <p>Attend a fascinating talk by industry experts about the latest trends in Artificial Intelligence and how it will shape the future.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSezay4qHigYo0Aqwq2DYdH9gunyTd7qxhpIE97aYZLaYe1C_Q/viewform?usp=sf_link" class="btn" target="_blank">Register Here</a>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="event-card">
+        <img src="https://via.placeholder.com/350x200?text=Cultural+Fest" alt="Cultural Fest">
+        <h3>Cultural Fest</h3>
+        <p>Explore and showcase diverse cultural talents across the college. A day full of music, dance, and arts!</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSezay4qHigYo0Aqwq2DYdH9gunyTd7qxhpIE97aYZLaYe1C_Q/viewform?usp=sf_link" class="btn" target="_blank">Register Here</a>
+      </div>
+
+      <!-- Event 4 -->
+      <div class="event-card">
+        <img src="https://via.placeholder.com/350x200?text=Sports+Day" alt="Sports Day">
+        <h3>Sports Day</h3>
+        <p>Show your athletic spirit and participate in various sports competitions. A fun-filled day for all sports enthusiasts!</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSezay4qHigYo0Aqwq2DYdH9gunyTd7qxhpIE97aYZLaYe1C_Q/viewform?usp=sf_link" class="btn" target="_blank">Register Here</a>
+      </div>
+
+      <!-- Event 5 -->
+      <div class="event-card">
+        <img src="https://via.placeholder.com/350x200?text=Entrepreneurship" alt="Entrepreneurship Workshop">
+        <h3>Entrepreneurship Workshop</h3>
+        <p>Learn how to start your own business with guidance from successful entrepreneurs. A must-attend for aspiring startup founders.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSezay4qHigYo0Aqwq2DYdH9gunyTd7qxhpIE97aYZLaYe1C_Q/viewform?usp=sf_link" class="btn" target="_blank">Register Here</a>
+      </div>
+
+      <!-- Event 6 -->
+      <div class="event-card">
+        <img src="https://via.placeholder.com/350x200?text=Photography+Contest" alt="Photography Contest">
+        <h3>Photography Contest</h3>
+        <p>Capture the beauty around campus and submit your best shots. Top photographers will win exciting rewards!</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSezay4qHigYo0Aqwq2DYdH9gunyTd7qxhpIE97aYZLaYe1C_Q/viewform?usp=sf_link" class="btn" target="_blank">Register Here</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer with Moving Text -->
+  
+    <div class="moving-text move-left-to-right"><i class="fa-solid fa-calendar"></i>--------------College Events-------------<i class="fa-solid fa-calendar-check"></i></div>
+    <div class="moving-text move-right-to-left"><i class="fa-regular fa-calendar-xmark"></i>---------------Upcoming Events---------------<i class="fa-regular fa-calendar-check"></i></div>
+  
+
+</body>
+</html>

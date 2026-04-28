@@ -1,0 +1,170 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Style for the navbar */
+.navbar {
+    position: fixed;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    transition: 0.3s;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.navbar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.2s;
+}
+
+.navbar a:hover {
+    background-color: #575757;
+}
+
+/* For the menu icon */
+.menu-btn {
+    font-size: 30px;
+    margin: 10px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Sections style */
+.section {
+    margin-left: 30px;
+    padding: 20px;
+}
+
+/* Push content when navbar is opened */
+.main-content {
+    margin-left: 50px;
+    transition: margin-left 0.3s;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Navbar opened */
+.open-navbar .navbar {
+    left: 0;
+}
+
+.open-navbar .main-content {
+    margin-left: 250px;
+}
+
+/* Section titles */
+.section h2 {
+    color: #333;
+}
+
+/* Section details */
+.section table, .section form {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.section table th, .section table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.section table th {
+    background-color: #f2f2f2;
+}
+
+/* Syllabus notifications */
+.notification {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin: 10px 0;
+    border-left: 5px solid #2196F3;
+}
+
+.section {
+    margin: 0 auto; /* Center the section */
+    width: 80%; /* Set the width to 80% */
+    padding: 20px;
+    background-color: #2196F3;
+}
+
+.exam-form {
+    text-align: center; /* Center the form elements */
+}
+
+.exam-form label {
+    font-size: 24px; /* Increase font size to 24px */
+    font-weight: bold; /* Make font bold */
+    display: block; /* Display labels as block elements */
+    margin-bottom: 10px; /* Add margin bottom to labels */
+}
+
+.exam-form select {
+    font-size: 24px; /* Increase font size to 24px */
+    padding: 10px; /* Add padding to select boxes */
+    width: 100%; /* Make select boxes full width */
+}
+
+.exam-form input[type="submit"] {
+    font-size: 24px; /* Increase font size to 24px */
+    padding: 10px 20px; /* Add padding to submit button */
+    width: 100%; /* Make submit button full width */
+    background-color: #4CAF50; /* Change background color to green */
+    color: #ffffff; /* Change text color to white */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add border radius */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.exam-form input[type="submit"]:hover {
+    background-color: #3e8e41; /* Change background color on hover */
+}
+
+.score-details {
+    display: none; /* Hide score details by default */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.score-details table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.score-details th, .score-details td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.score-details th {
+    background-color: #f0f0f0;
+}
+
+.exam-btn {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.exam-btn:hover {
+    background-color: #3e8e41;
+}
+
+.score-details {
+    transition: display 0.5s; /* Add transition effect to score details */
+}

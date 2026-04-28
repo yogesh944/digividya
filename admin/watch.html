@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Teacher Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1, h2 {
+            color: #00509e;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .table th, .table td {
+            padding: 8px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        .btn {
+            padding: 5px 10px;
+            background-color: #00509e;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Admin Dashboard - Teacher Monitoring</h1>
+    
+    <!-- Timetable Section -->
+    <h2>Teacher Timetable</h2>
+    <table class="table" id="timetable">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Section</th>
+                <th>Teacher</th>
+                <th>Subject</th>
+                <th>Room</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- JavaScript will populate this table -->
+        </tbody>
+    </table>
+    
+    <!-- Attendance Section -->
+    <h2>Teacher Attendance</h2>
+    <table class="table" id="attendance">
+        <thead>
+            <tr>
+                <th>Teacher</th>
+                <th>Attendance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- JavaScript will populate this table -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Sample data structure for teachers, sections, and timetable
+    const teachers = ["Ms. Prachi Jain", "Ms. Trupti Meshram", "Mr. Raju Roy", "Ms. Ruchi", "Mr. Imran Khan"];
+    const sections = ["Section A", "Section B", "Section C", "Section D", "Section F"];
+    const subjects = ["Dsa", "Open Elective", "Dmgt", "Mdm-1", "EEim"];
+    let timetable = [
+        { time: "8:00 AM", section: "Section A", teacher: "Ms. Prachi Jain", subject: "Dsa", room: "102" },
+        { time: "9:00 AM", section: "Section B", teacher: "Ms. Trupti Meshram", subject: "Open Elective", room: "101" },
+        { time: "10:00 AM", section: "Section C", teacher: "Mr. Raju Roy", subject: "Dmgt", room: "008" },
+        { time: "11:00 AM", section: "Section D", teacher: "Ms. Ruchi", subject: "Mdm-1", room: "317" },
+        { time: "12:00 PM", section: "Section F", teacher: "Mr. Imran Khan", subject: "EEim", room: "309" }
+        // Add more class times as needed
+    ];
+
+    // Load attendance data from localStorage
+    function renderAttendance() {
+        const attendanceTable = document.getElementById("attendance").getElementsByTagName("tbody")[0];
+        attendanceTable.innerHTML = "";
+        const attendance = JSON.parse(localStorage.getItem("attendance")) || {};
+        teachers.forEach(teacher => {
+            const row = attendanceTable.insertRow();
+            row.insertCell(0).textContent = teacher;
+            const attendanceStatus = attendance[teacher] || "Absent"; // Default to "Absent" if not marked
+            row.insertCell(1).textContent = attendanceStatus;
+        });
+    }
+
+    // Function to render timetable
+    function renderTimetable() {
+        const timetableTable = document.getElementById("timetable").getElementsByTagName("tbody")[0];
+        timetableTable.innerHTML = "";
+        timetable.forEach((entry, index) => {
+            const row = timetableTable.insertRow();
+            row.insertCell(0).textContent = entry.time;
+            row.insertCell(1).textContent = entry.section;
+            row.insertCell(2).textContent = entry.teacher;
+            row.insertCell(3).textContent = entry.subject;
+            row.insertCell(4).textContent = entry.room;
+            const editCell = row.insertCell(5);
+            const editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            editButton.className = "btn";
+            editButton.onclick = () => editTimetableEntry(index);
+            editCell.appendChild(editButton);
+        });
+    }
+
+    // Function to edit timetable entries
+    function editTimetableEntry(index) {
+        const newTeacher = prompt("Enter new teacher:", timetable[index].teacher);
+        const newSubject = prompt("Enter new subject:", timetable[index].subject);
+        const newRoom = prompt("Enter new room:", timetable[index].room);
+        if (newTeacher && newSubject && newRoom) {
+            timetable[index].teacher = newTeacher;
+            timetable[index].subject = newSubject;
+            timetable[index].room = newRoom;
+            renderTimetable();
+        }
+    }
+
+    // Initial render functions to display data
+    renderTimetable();
+    renderAttendance();
+</script>
+
+</body>
+</html>
